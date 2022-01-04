@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,700&family=Spline+Sans&display=swap");
+
+a {
+    font-family: "Spline Sans", sans-serif;
+}
+
+h1 {
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    background-color: #e4dbd4;
+}
+
+.logo-header img {
+    width: 200px;
+}
+
+header {
+    background-color: rgba(223, 209, 196, 0.623);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+}
+
+.nav-menu ul {
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu li {
+    margin-right: 1.5rem;
+    text-transform: uppercase;
+}
+
+.nav-menu a:hover {
+    color: #575757;
+}
+
+.nav-menu ul li a {
+    font-size: 25px;
+    color: black;
+}
+
+.digigames {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20rem;
+}
