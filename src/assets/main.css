@@ -56,3 +56,11 @@ header {
     align-items: center;
     margin-top: 20rem;
 }
+
+.Carrito {
+    fill: black;
+}
+
+.Carrito:hover {
+    fill: #575757;
+}

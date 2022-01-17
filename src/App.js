@@ -1,5 +1,6 @@
 import react from "react";
 import "./assets/main.css";
+import ItemListContainer from "./components/ItemListContainer";
 import Navbar from "./components/Navbar";
 
 class App extends react.Component {
@@ -7,7 +8,7 @@ class App extends react.Component {
         return (
             <div>
                 <Navbar />
-                <h1 className="digigames">DIGIGAMES...</h1>
+                <ItemListContainer greeting="Digigames..." />
             </div>
         );
     }

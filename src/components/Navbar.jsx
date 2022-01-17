@@ -1,5 +1,6 @@
 import react from "react";
 import logo from "../assets/logo.png";
+import CartWidget from "./CartWidget";
 
 class Navbar extends react.Component {
     render() {
@@ -20,6 +21,9 @@ class Navbar extends react.Component {
                         </li>
                         <li>
                             <a href="#">Soporte</a>
+                        </li>
+                        <li>
+                            <CartWidget />
                         </li>
                     </ul>
                 </nav>
