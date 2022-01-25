@@ -1,10 +1,12 @@
 import react, { Fragment } from "react";
-import ItemCount from "./ItemCount";
+
+import Item from "./Item";
+import ItemList from "./ItemList";
 
 export default function ItemListContainer(props) {
     return (
         <Fragment>
-            <ItemCount juego={"Dark Souls III"} stock={5} initial={1} />
+            <ItemList />
         </Fragment>
     );
 }
