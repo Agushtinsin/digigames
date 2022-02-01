@@ -1,26 +1,27 @@
 import react from "react";
-import logo from "../assets/logo.png";
-import CartWidget from "./CartWidget";
+import logo from "../../assets/logo.png";
+import { Link, NavLink } from "react-router-dom";
+import CartWidget from "../CartWidget/CartWidget";
 
 class Navbar extends react.Component {
     render() {
         return (
             <header>
                 <div className="logo-header">
-                    <a href="">
+                    <Link to="/">
                         <img src={logo} alt="logo" />
-                    </a>
+                    </Link>
                 </div>
                 <nav className="nav-menu">
                     <ul>
                         <li>
-                            <a href="#">Tienda</a>
+                            <Link to="/">Tienda</Link>
                         </li>
                         <li>
-                            <a href="#">Acerca De</a>
+                            <NavLink to="/category/pc">Juegos PC</NavLink>
                         </li>
                         <li>
-                            <a href="#">Soporte</a>
+                            <NavLink to="/category/ps4">Juegos PS4</NavLink>
                         </li>
                         <li>
                             <CartWidget />

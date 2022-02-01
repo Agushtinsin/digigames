@@ -72,7 +72,14 @@ header {
     fill: #575757;
 }
 
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .card {
+    flex: 0 1 calc(25% - 1em);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
     margin: auto;
