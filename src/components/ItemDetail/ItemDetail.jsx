@@ -1,10 +1,10 @@
 import React from "react";
 import ItemCount from "../ItemCount/ItemCount";
-const ItemDetail = ({ title, pictureUrl, price, id, stock }) => {
+const ItemDetail = ({ title, pictureUrl, price, stock }) => {
     return (
         <div>
             <div className="card">
-                <img src={pictureUrl} className="card-img-top" alt={title} />
+                <img src={pictureUrl} alt={title} />
                 <div>
                     <h2>{title}</h2>
                     <p className="precio">${price}</p>
