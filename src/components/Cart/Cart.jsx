@@ -1,15 +1,13 @@
 import React from "react";
+import ItemDetail from "../ItemDetail/ItemDetail";
 
-const Cart = () => {
+const Cart = ({ items }) => {
     return (
-        <div
-            style={{
-                display: "flex",
-                justifycontent: "center",
-                alignItems: "center",
-            }}
-        >
-            <h1>Carrito</h1>
+        <div>
+            {items.map((currentItem) => {
+                const { item } = currentItem;
+                return <ItemDetail {...item} cantidad={currentItem.cantidad} />;
+            })}
         </div>
     );
 };

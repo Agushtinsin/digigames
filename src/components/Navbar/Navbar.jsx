@@ -24,7 +24,9 @@ class Navbar extends react.Component {
                             <NavLink to="/category/ps4">Juegos PS4</NavLink>
                         </li>
                         <li>
-                            <CartWidget />
+                            <NavLink to="/cart">
+                                <CartWidget />
+                            </NavLink>
                         </li>
                     </ul>
                 </nav>

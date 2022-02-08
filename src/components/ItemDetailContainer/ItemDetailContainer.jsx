@@ -8,6 +8,8 @@ export const ItemDetailContainer = () => {
 
     const [item, setItem] = useState(null);
 
+    const [cantidad, setCantidad] = useState(0);
+
     useEffect(() => {
         if (itemId) {
             const task = new Promise((resolve) => {
@@ -24,7 +26,11 @@ export const ItemDetailContainer = () => {
 
     return (
         <div>
-            <ItemDetail {...item} />
+            <ItemDetail
+                {...item}
+                cantidad={cantidad}
+                setCantidad={setCantidad}
+            />
         </div>
     );
 };
