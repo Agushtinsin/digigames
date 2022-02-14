@@ -1,44 +1,56 @@
 import { createContext, useState } from "react";
-import React from "react";
 
-export const CartContext = createContext([]);
+export const CartContext = createContext({
+    cart: [],
+});
 
-const CartProvider = ({ children }) => {
-    const [itemsCart, setItemsCart] = useState([]);
+export function CartContextProvider({ children }) {
+    const [cart, setCart] = useState([]);
 
-    const addItem = (currentItem) => {
-        if (itemsCart.some(({ item }) => item.id === currentItem.item.id)) {
-            return;
-        }
-        setItemsCart([...itemsCart, currentItem]);
-    };
+    function addToCart(product) {
+        setCart((existing) => {
+            return existing.concat(product);
+        });
+    }
 
-    const removeItem = (itemId) => {
-        const newArray = itemsCart.filter(
-            (element) => element.item.id !== itemId
-        );
-        setItemsCart(newArray);
-    };
+    function removeFromCart(product) {
+        setCart((existing) => {
+            return existing.filter((p) => p.id !== product.id);
+        });
+    }
 
-    const clear = () => setItemsCart([]);
+    function productIsInCart(product) {
+        return cart.some((p) => p.id === product.id);
+    }
 
-    const isInCart = (itemId) => {
-        const isInCartTrue = itemsCart.find(
-            (element) => element.item.id === itemId
-        );
-        console.log(isInCartTrue);
-        isInCartTrue
-            ? alert("Esta en el carrito")
-            : alert("No esta en el carrito");
+    function clearCart() {
+        setCart([]);
+    }
+
+    function moreQuantity(product) {
+        const position = cart.findIndex((p) => p.id === product.id);
+        cart[position].quantity = parseInt(cart[position].quantity) + 1;
+        setCart(cart.concat([]));
+    }
+
+    function lessQuantity(product) {
+        const position = cart.findIndex((p) => p.id === product.id);
+        cart[position].quantity = parseInt(cart[position].quantity) - 1;
+        setCart(cart.concat([]));
+    }
+
+    const context = {
+        cart: cart,
+        total: cart.length,
+        addToCart: addToCart,
+        removeFromCart: removeFromCart,
+        productIsInCart: productIsInCart,
+        clearCart: clearCart,
+        moreQuantity: moreQuantity,
+        lessQuantity: lessQuantity,
     };
 
     return (
-        <CartContext.Provider
-            value={{ itemsCart, addItem, removeItem, clear, isInCart }}
-        >
-            {children}
-        </CartContext.Provider>
+        <CartContext.Provider value={context}>{children}</CartContext.Provider>
     );
-};
-
-export default CartProvider;
+}

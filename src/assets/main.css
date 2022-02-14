@@ -15,6 +15,10 @@ p {
     font-family: "Spline Sans", sans-serif;
 }
 
+span {
+    font-family: "Spline Sans", sans-serif;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -24,6 +28,11 @@ p {
 
 body {
     background-color: #e4dbd4;
+}
+
+img {
+    width: 100%;
+    display: block;
 }
 
 .logo-header img {
@@ -159,7 +168,6 @@ img {
 }
 
 .button-4 {
-    margin-left: 10px;
     appearance: none;
     background-color: rgba(223, 209, 196, 0.623);
     border: 1px solid rgba(27, 31, 35, 0.15);
@@ -216,4 +224,102 @@ img {
 
 .button-4:-webkit-details-marker {
     display: none;
+}
+
+.homeContainer {
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.home {
+    width: auto;
+}
+
+.product-title {
+    font-size: 3rem;
+    text-transform: capitalize;
+    font-weight: 700;
+    position: relative;
+    color: #000000;
+    margin: 1rem 0;
+}
+.product-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 80px;
+    background: #000000;
+}
+
+.product-price {
+    margin: 1rem 0;
+    font-weight: 700;
+    font-size: 22px;
+    font-family: "Spline Sans", sans-serif;
+}
+
+.ItemDetail h2 {
+    text-transform: capitalize;
+    color: #12263a;
+    padding-bottom: 0.6rem;
+}
+.ItemDetail p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+.ItemDetail ul li {
+    font-size: 0.9rem;
+    font-family: "Spline Sans", sans-serif;
+}
+.ItemDetail ul li {
+    margin: 0;
+    list-style: none;
+    margin: 0.4rem 0;
+    font-weight: 600;
+    opacity: 0.9;
+}
+.ItemDetail ul li span {
+    font-weight: 400;
+}
+
+.carrito {
+    font-family: "Spline Sans", sans-serif;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 992px) {
+    .itemDetailPhoto {
+        width: 1500px;
+        padding-top: 0;
+        margin-left: 400px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+    }
+    .itemDetailContainer {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ItemDetail {
+        width: 600px;
+        padding-top: 0;
+    }
+    .BigItemDetail {
+        height: 800px;
+        margin-left: -400px;
+    }
 }

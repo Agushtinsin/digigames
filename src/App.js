@@ -1,17 +1,33 @@
-import react from "react";
 import "./assets/main.css";
-import Routes from "./routes/Routes";
-import CartProvider from "./components/CartContext/CartContext";
+import NavBar from "./components/Navbar/Navbar";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/Home/Home";
+import Cart from "./components/Cart/Cart";
+import { CartContextProvider } from "./components/CartContext/CartContext";
 
-class App extends react.Component {
-    render() {
-        return (
-            <div className="App">
-                <CartProvider>
-                    <Routes />
-                </CartProvider>
-            </div>
-        );
-    }
+function App() {
+    return (
+        <CartContextProvider>
+            <Router>
+                <NavBar />
+                <Routes>
+                    <Route path="" element={<Home />} />
+                    <Route path="cart" element={<Cart />} />
+                    <Route path="products" element={<ItemListContainer />} />
+                    <Route
+                        path="products/:categoryId"
+                        element={<ItemListContainer />}
+                    />
+                    <Route
+                        path="products/details/:productId"
+                        element={<ItemDetailContainer />}
+                    />
+                </Routes>
+            </Router>
+        </CartContextProvider>
+    );
 }
+
 export default App;

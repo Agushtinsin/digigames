@@ -1,36 +1,28 @@
-import items from "../../juegos";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import db from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
-export const ItemDetailContainer = () => {
-    const { itemId } = useParams();
-
-    const [item, setItem] = useState(null);
-
-    const [cantidad, setCantidad] = useState(0);
+const ItemDetailContainer = () => {
+    const [product, setProduct] = useState([]);
+    const { productId } = useParams();
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (itemId) {
-            const task = new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(items[itemId]);
-                }, 2000);
-            });
+        setLoading(true);
 
-            task.then((result) => {
-                setItem(result);
-            });
-        }
-    }, [itemId]);
+        const reference = doc(db, "items", productId);
 
-    return (
-        <div>
-            <ItemDetail
-                {...item}
-                cantidad={cantidad}
-                setCantidad={setCantidad}
-            />
-        </div>
-    );
+        getDoc(reference).then((querySnapshot) => {
+            setProduct({ ...querySnapshot.data(), id: querySnapshot.id });
+        });
+
+        setLoading(false);
+    }, [productId]);
+
+    return <div>{<ItemDetail product={product} />}</div>;
 };
+
+export default ItemDetailContainer;

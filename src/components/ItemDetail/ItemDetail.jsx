@@ -1,82 +1,59 @@
-import React, { useContext } from "react";
+import React from "react";
 import ItemCount from "../ItemCount/ItemCount";
-import { useLocation } from "react-router";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { CartContext } from "../CartContext/CartContext";
 
-const ItemDetail = ({
-    id,
-    title,
-    pictureUrl,
-    price,
-    description,
-    category,
-    stock,
-    cantidad,
-    setCantidad,
-}) => {
-    const location = useLocation();
+const ItemDetail = ({ product }) => {
+    const [added, setAdded] = useState(false);
 
-    const { addItem, removeItem, isInCart } = useContext(CartContext);
+    const { addToCart, productIsInCart } = useContext(CartContext);
 
-    const handleAddItem = () => {
-        const item = {
-            title,
-            pictureUrl,
-            price,
-            description,
-            category,
-            id,
-            stock,
-        };
-        addItem({ item, cantidad });
-    };
-
-    const handleRemoveItem = () => {
-        removeItem(id);
-    };
-
-    const handleIsInCart = () => {
-        isInCart(id);
-    };
-
+    function onAdd(props) {
+        product.quantity = parseInt(props.target.value);
+        if (productIsInCart(product) === true) {
+            console.log("El producto ya se encuentra en el carrito");
+        } else {
+            addToCart(product);
+        }
+        setAdded(true);
+    }
     return (
-        <div>
-            <div className="card">
-                <img src={pictureUrl} alt={title} />
-                <div>
-                    <h2>{title}</h2>
-                    <p className="precio">${price}</p>
-
-                    {location.pathname === "/cart" ? null : (
-                        <>
-                            <p>Plataforma: {category}</p>
-                            <p>Stock: {stock}</p>
-                            <ItemCount
-                                stock={stock}
-                                cantidad={cantidad}
-                                setCantidad={setCantidad}
-                            />
-                            <button onClick={handleAddItem}>
-                                Agregar al carrito
-                            </button>
-                            <button onClick={handleIsInCart}>
-                                ¿Esta en el carrito?
-                            </button>
-                        </>
-                    )}
-
-                    {location.pathname === "/cart" && (
-                        <>
-                            <p>Cantidad seleccionada: {cantidad}</p>
-                            <p>Precio total de ${price * cantidad}</p>
-                            <button onClick={handleRemoveItem}>
-                                Remover item
-                            </button>
-                        </>
-                    )}
+        <div className="itemDetailContainer">
+            <div className="itemDetailPhoto">
+                <img
+                    className="photo"
+                    src={product.pictureUrl}
+                    alt={product.title}
+                />
+            </div>
+            <div className="BigItemDetail">
+                <div className="ItemDetail">
+                    <h2 className="product-title">{product.title}</h2>
+                    <span className="product-price">$ {product.price}</span>
+                    <h2>Acerca de:</h2>
+                    <p>{product.description}</p>
+                    <ul>
+                        <li>
+                            Plataforma: <span>{product.category}</span>
+                        </li>
+                    </ul>
                 </div>
+                {added === true || productIsInCart(product) === true ? (
+                    <div className="buttonsContainer">
+                        <Link to="/cart">
+                            <button className="button-4">Ir al carrito</button>
+                        </Link>
+                        <Link to="/products">
+                            <button className="button-4">Volver</button>
+                        </Link>
+                    </div>
+                ) : (
+                    <ItemCount onAdd={onAdd} stock={product.stock} />
+                )}
             </div>
         </div>
     );
 };
+
 export default ItemDetail;
