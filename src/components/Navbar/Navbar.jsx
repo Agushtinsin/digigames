@@ -17,13 +17,6 @@ const Navbar = () => {
         });
         promise
             .then((resolved) => {
-                /* const filteredCategories = []
-                resolved.forEach(product => {
-                    if (!filteredCategories.includes(product.category)) {
-                        filteredCategories.push(product.category)
-                    }
-                });
-                filteredCategories.sort() */
                 setCategories(resolved);
             })
             .catch((rejected) => alert(rejected));
@@ -66,34 +59,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// import React from "react";
-// import CartWidget from "../CartWidget/CartWidget";
-// import { useEffect, useState } from "react";
-// import { Link, NavLink } from "react-router-dom";
-
-//     return (
-//         <div className="NavBar">
-//             <div className="logo">
-//                 <Link to="">Basics Store</Link>
-//             </div>
-//             <div className="links">
-{
-    /* <NavLink to="products">Todos</NavLink>;
-{
-    categories.map((category) => (
-        <NavLink to={`products/${category.toLowerCase()}`} key={category}>
-            {category}
-        </NavLink>
-    ));
-} */
-}
-//             </div>
-//             <Link to="cart">
-//                 <CartWidget />
-//             </Link>
-//         </div>
-//     );
-// };
-
-// export default NavBar;

@@ -298,6 +298,39 @@ img {
     transform: translate(-50%, -50%);
 }
 
+.checkoutContainer {
+    font-family: "Spline Sans", sans-serif;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.inputCheckout {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.botonCheckout {
+    width: 100%;
+    background-color: rgba(117, 110, 104, 0.623);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.botonCheckout:hover {
+    background-color: rgba(194, 181, 170, 0.623);
+}
+
 @media screen and (min-width: 992px) {
     .itemDetailPhoto {
         width: 1500px;

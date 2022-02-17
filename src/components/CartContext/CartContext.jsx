@@ -5,7 +5,16 @@ export const CartContext = createContext({
 });
 
 export function CartContextProvider({ children }) {
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(() => {
+        const localData = localStorage.getItem("cart");
+        return localData ? JSON.parse(localData) : [];
+    });
+    const [purchase, setPurchase] = useState({
+        total: 0,
+    });
+    const [active, setActive] = useState(false);
+    const [message, setMessage] = useState("");
+    const [order, setOrder] = useState({ type: "price", direction: "asc" });
 
     function addToCart(product) {
         setCart((existing) => {
@@ -39,6 +48,20 @@ export function CartContextProvider({ children }) {
         setCart(cart.concat([]));
     }
 
+    function addTotal(total) {
+        setPurchase({
+            total: total,
+        });
+    }
+
+    function changeMessage(newMessage) {
+        setMessage(newMessage);
+        setActive(true);
+        setTimeout(() => {
+            setActive(false);
+        }, 3000);
+    }
+
     const context = {
         cart: cart,
         total: cart.length,
@@ -48,6 +71,12 @@ export function CartContextProvider({ children }) {
         clearCart: clearCart,
         moreQuantity: moreQuantity,
         lessQuantity: lessQuantity,
+        active: active,
+        message: message,
+        changeMessage: changeMessage,
+        order: order,
+        addTotal: addTotal,
+        purchase: purchase,
     };
 
     return (
