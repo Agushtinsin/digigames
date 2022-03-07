@@ -26,8 +26,6 @@ const Navbar = () => {
         getCategories();
     }, []);
 
-    console.log(categories);
-
     return (
         <header>
             <div className="logo-header">
